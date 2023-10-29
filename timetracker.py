@@ -2,13 +2,6 @@ import datetime, json, psutil, sys, pygame as pg
 from win32gui import GetForegroundWindow
 from win32process import GetWindowThreadProcessId
 
-# store them into an all_times.json file, showing the app, then every date, then the time spent on each date
-# nearly done that
-
-
-# the timedeltas get converted to strings so they can be stored in the json file
-
-
 # gets the name of the process ... (https://stackoverflow.com/questions/70574208/get-the-name-of-the-current-opened-application-in-python)
 def get_process_name():
     hwnd = GetForegroundWindow()
@@ -25,6 +18,7 @@ def timedelta_round_seconds(timedelta):
     timedelta_full = datetime.timedelta(seconds=int(timedelta_seconds))
     return timedelta_full
 
+# the timedeltas get converted to strings so they can be stored in the json file
 def str_to_timedelta(str_of_timedelta): # input the value of the key and get out a timedelta
     converted_str = datetime.datetime.strptime(str_of_timedelta,"%H:%M:%S") # we specify the input and the format...
     converted_str = datetime.timedelta(hours=converted_str.hour, minutes=converted_str.minute, seconds=converted_str.second) # ...and use datetime's hour, min and sec properties to build a timedelta
